@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE68260F2495F10B00F34B44 /* ExerciseLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68260E2495F10B00F34B44 /* ExerciseLog.swift */; };
+		CEA5E43B24933D1500EABBE1 /* MuscleCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5E43A24933D1500EABBE1 /* MuscleCellTableViewCell.swift */; };
+		CEA5E43F2493467800EABBE1 /* AddExerciseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5E43E2493467800EABBE1 /* AddExerciseScreen.swift */; };
+		CEA5E4412493469C00EABBE1 /* ExerciseListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5E4402493469C00EABBE1 /* ExerciseListScreen.swift */; };
 		CEAAD404248F0E05006C1E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAD403248F0E05006C1E2A /* AppDelegate.swift */; };
 		CEAAD406248F0E05006C1E2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAD405248F0E05006C1E2A /* SceneDelegate.swift */; };
-		CEAAD408248F0E05006C1E2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAD407248F0E05006C1E2A /* ViewController.swift */; };
 		CEAAD40B248F0E05006C1E2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD409248F0E05006C1E2A /* Main.storyboard */; };
 		CEAAD40D248F0E0A006C1E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD40C248F0E0A006C1E2A /* Assets.xcassets */; };
 		CEAAD410248F0E0A006C1E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD40E248F0E0A006C1E2A /* LaunchScreen.storyboard */; };
@@ -35,10 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE68260E2495F10B00F34B44 /* ExerciseLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseLog.swift; sourceTree = "<group>"; };
+		CEA5E43A24933D1500EABBE1 /* MuscleCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleCellTableViewCell.swift; sourceTree = "<group>"; };
+		CEA5E43E2493467800EABBE1 /* AddExerciseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseScreen.swift; sourceTree = "<group>"; };
+		CEA5E4402493469C00EABBE1 /* ExerciseListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListScreen.swift; sourceTree = "<group>"; };
 		CEAAD400248F0E05006C1E2A /* ExerciseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAAD403248F0E05006C1E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEAAD405248F0E05006C1E2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CEAAD407248F0E05006C1E2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEAAD40A248F0E05006C1E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEAAD40C248F0E0A006C1E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAAD40F248F0E0A006C1E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,9 +105,12 @@
 		CEAAD402248F0E05006C1E2A /* ExerciseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CEA5E4402493469C00EABBE1 /* ExerciseListScreen.swift */,
+				CEA5E43E2493467800EABBE1 /* AddExerciseScreen.swift */,
+				CE68260E2495F10B00F34B44 /* ExerciseLog.swift */,
+				CEA5E43A24933D1500EABBE1 /* MuscleCellTableViewCell.swift */,
 				CEAAD403248F0E05006C1E2A /* AppDelegate.swift */,
 				CEAAD405248F0E05006C1E2A /* SceneDelegate.swift */,
-				CEAAD407248F0E05006C1E2A /* ViewController.swift */,
 				CEAAD409248F0E05006C1E2A /* Main.storyboard */,
 				CEAAD40C248F0E0A006C1E2A /* Assets.xcassets */,
 				CEAAD40E248F0E0A006C1E2A /* LaunchScreen.storyboard */,
@@ -259,8 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAAD408248F0E05006C1E2A /* ViewController.swift in Sources */,
+				CEA5E43F2493467800EABBE1 /* AddExerciseScreen.swift in Sources */,
+				CEA5E4412493469C00EABBE1 /* ExerciseListScreen.swift in Sources */,
 				CEAAD404248F0E05006C1E2A /* AppDelegate.swift in Sources */,
+				CEA5E43B24933D1500EABBE1 /* MuscleCellTableViewCell.swift in Sources */,
+				CE68260F2495F10B00F34B44 /* ExerciseLog.swift in Sources */,
 				CEAAD406248F0E05006C1E2A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
