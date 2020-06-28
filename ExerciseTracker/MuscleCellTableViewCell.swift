@@ -8,23 +8,21 @@
 
 import UIKit
 
+protocol MuscleCellDelegate: class {
+    func toggleMuscleWorked(sender: MuscleCellTableViewCell)
+}
+
 class MuscleCellTableViewCell: UITableViewCell {
 
     @IBOutlet var muscleName: UILabel!
     
     @IBOutlet var muscleSelected: UISwitch!
     
-    var musclesExercised: AddExerciseScreen.MusclesExercised? = nil
+    var delegate: MuscleCellDelegate?
     
     @IBAction func muscleSwitchToggle(_ sender: UISwitch) {
-        musclesExercised?.setMuscleExercised(muscle: self.muscleName.text!, value: self.muscleSelected.isOn)
+        delegate?.toggleMuscleWorked(sender: self)
     }
     
-    func setMuscle(name: String) {
-        self.muscleName.text = name
-    }
     
-    func setMuscleGroupsReference(musclesExercised: AddExerciseScreen.MusclesExercised) {
-        self.musclesExercised = musclesExercised
-    }
 }

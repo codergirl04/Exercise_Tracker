@@ -7,8 +7,23 @@
 //
 
 import UIKit
+protocol AddExerciseDelegate: class {
+    func saveWorkout(sender: AddExerciseScreen)
+}
 
-class AddExerciseScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AddExerciseScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, MuscleCellDelegate {
+    
+    func toggleMuscleWorked(sender: MuscleCellTableViewCell) {
+        if let muscleName = sender.muscleName.text {
+            exerciseLog?.musclesExercised[muscleName] = sender.muscleSelected.isOn
+        }
+    }
+    
+    var isPickerHidden = true
+    var exerciseLog: ExerciseLog?
+    var updateMode: Bool = false
+    var rowNumber: Int?
+    var delegate: AddExerciseDelegate?
 
     class MusclesExercised: CustomStringConvertible, Codable {
         // Couldn't pass and save the reference to a dictionary in MuscleCellTableViewCell because dictionaries are passed as values so I put it inside a class so I can pass the reference to the object
@@ -26,51 +41,39 @@ class AddExerciseScreen: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
-    var muscles: [String] = ["Neck", "Shoulders", "Upper back", "Lower back", "Biceps", "Triceps", "Forearms", "Abs", "Glutes", "Hamstrings", "Quads", "Calves", "Deltoids", "Trapezius"]
+    @IBAction func dateUpdated(_ sender: UIDatePicker) {
+        exerciseLog!.date = datePickerView.date
+    }
+    
+    
+    var muscles: [String] = ["Neck", "Shoulders", "Upper back", "Lower back", "Biceps", "Triceps", "Forearms", "Abs", "Glutes", "Hamstrings", "Quads", "Calves"]
     
     var musclesExercised: MusclesExercised
     required init?(coder: NSCoder) {
-        self.musclesExercised=MusclesExercised(muscles: self.muscles)
+        self.musclesExercised = MusclesExercised(muscles: self.muscles)
         super.init(coder: coder)
     }
 
     @IBOutlet var tableView: UITableView!
     
-    
-    @IBAction func saveWorkout(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let archiveURL = documentsDirectory.appendingPathComponent("exercises").appendingPathExtension("plist")
-        var exerciseLog : [ExerciseLog]
-        let propertyListDecoder = PropertyListDecoder()
-        if let retrievedData = try? Data(contentsOf: archiveURL),
-            let log = try? propertyListDecoder.decode(Array<ExerciseLog>.self, from: retrievedData){
-            exerciseLog = log
-        } else {
-            exerciseLog = []
-        }
-        let newLog = ExerciseLog(date: Date(), musclesExercised: self.musclesExercised.musclesExercised)
-        exerciseLog.insert(newLog, at: 0)
-        
-        let propertyListEncoder = PropertyListEncoder()
-        let encodedLogs = try? propertyListEncoder.encode(exerciseLog)
-
-        try? encodedLogs?.write(to: archiveURL, options: .noFileProtection)
-        //Test reading and printing
-        if let retrievedData = try? Data(contentsOf: archiveURL),
-            let log = try? propertyListDecoder.decode(Array<ExerciseLog>.self, from: retrievedData){
-            exerciseLog = log
-        } else {
-            exerciseLog = []
-        }
-        print(exerciseLog)
-
-    }
+    @IBOutlet var datePickerView: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        if let exerciseLog = self.exerciseLog {
+            datePickerView.date = exerciseLog.date
+        }
+        else {
+            var musclesExercised = [String:Bool]()
+            for muscle in muscles {
+                musclesExercised[muscle] = false
+            }
+            exerciseLog = ExerciseLog(date: Date(), musclesExercised: musclesExercised)
+        }
+        datePickerView.maximumDate = Date()
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,12 +84,26 @@ class AddExerciseScreen: UIViewController, UITableViewDataSource, UITableViewDel
         let muscle = muscles[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MuscleCell") as! MuscleCellTableViewCell
         
-        cell.setMuscle(name: muscle)
-        
-        cell.setMuscleGroupsReference(musclesExercised: musclesExercised)
+        cell.muscleName.text = muscle
+        if let exerciseLog = self.exerciseLog {
+            if let isOn = exerciseLog.musclesExercised[muscle] {
+                cell.muscleSelected.isOn = isOn
+            }
+        }
+        cell.delegate = self
         
         return cell
         
     }
+    
+    @IBAction func saveWorkout(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.saveWorkout(sender: self)
+        }
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
+     
 }
 

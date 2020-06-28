@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i9p-57-ZGT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WA1-yi-3LF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -10,32 +10,37 @@
         <!--Exercise Log-->
         <scene sceneID="KNP-9l-Cwl">
             <objects>
-                <tableViewController id="P5N-GJ-xOt" sceneMemberID="viewController">
+                <tableViewController id="P5N-GJ-xOt" customClass="ExerciseListScreenTableViewController" customModule="ExerciseTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jeH-L9-EYB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="K36-po-2yH">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MuscleCell" translatesAutoresizingMaskIntoConstraints="NO" id="K36-po-2yH" customClass="ExerciseLogCell" customModule="ExerciseTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K36-po-2yH" id="Cfn-iQ-q3F">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whE-bX-QTY">
-                                            <rect key="frame" x="25" y="11.5" width="364" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whE-bX-QTY">
+                                            <rect key="frame" x="28" y="11" width="358" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="whE-bX-QTY" firstAttribute="leading" secondItem="Cfn-iQ-q3F" secondAttribute="leadingMargin" constant="5" id="Zus-U2-gQX"/>
-                                        <constraint firstItem="whE-bX-QTY" firstAttribute="centerY" secondItem="Cfn-iQ-q3F" secondAttribute="centerY" id="fzh-7f-UWO"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="whE-bX-QTY" secondAttribute="trailing" constant="5" id="g04-Tl-SGQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="whE-bX-QTY" secondAttribute="bottom" id="8It-E5-Gtq"/>
+                                        <constraint firstItem="whE-bX-QTY" firstAttribute="top" secondItem="Cfn-iQ-q3F" secondAttribute="topMargin" id="Iri-F8-G2n"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="whE-bX-QTY" secondAttribute="trailing" constant="8" id="RdN-K1-PZn"/>
+                                        <constraint firstItem="whE-bX-QTY" firstAttribute="leading" secondItem="Cfn-iQ-q3F" secondAttribute="leadingMargin" constant="8" id="qPo-8a-1qB"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="musclesWorked" destination="whE-bX-QTY" id="AjN-wO-CKK"/>
+                                    <segue destination="Ogb-sh-Asw" kind="presentation" identifier="EditWorkout" id="c6Y-Dt-xiI"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -45,12 +50,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Exercise Log" id="MsF-kR-xMi">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="RE3-nF-B4Q"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ARo-l5-RNS"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ARo-l5-RNS">
+                            <connections>
+                                <segue destination="Ogb-sh-Asw" kind="presentation" identifier="AddWorkout" id="qHs-bP-AoB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8J-nc-Qcv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-807" y="88"/>
+            <point key="canvasLocation" x="-207.24637681159422" y="89.732142857142847"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JY6-9R-qBS">
@@ -66,69 +75,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Pz-Ef-Pcv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1725" y="88"/>
-        </scene>
-        <!--Exercise List Screen-->
-        <scene sceneID="nPr-rX-GkJ">
-            <objects>
-                <viewController id="i9p-57-ZGT" customClass="ExerciseListScreen" customModule="ExerciseTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U3R-Em-BAN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buk-i2-OkM">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="9Fe-oI-L6y">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="831"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h92-ck-5Sk">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="H4I-Ow-BWk"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9S-Gm-dK4">
-                                                <rect key="frame" x="0.0" y="61" width="414" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="IzR-FB-4jm"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Add Workout"/>
-                                                <connections>
-                                                    <segue destination="Ogb-sh-Asw" kind="presentation" id="y7i-DM-OFz"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKr-WQ-gla">
-                                                <rect key="frame" x="0.0" y="122" width="414" height="709"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="VzY-2S-Ufi" firstAttribute="trailing" secondItem="9Fe-oI-L6y" secondAttribute="trailing" id="AwU-zh-JeZ"/>
-                                    <constraint firstItem="VzY-2S-Ufi" firstAttribute="bottom" secondItem="9Fe-oI-L6y" secondAttribute="bottom" constant="15" id="DxU-6r-IEk"/>
-                                    <constraint firstItem="9Fe-oI-L6y" firstAttribute="top" secondItem="VzY-2S-Ufi" secondAttribute="top" constant="50" id="aka-GK-7k8"/>
-                                    <constraint firstItem="9Fe-oI-L6y" firstAttribute="leading" secondItem="VzY-2S-Ufi" secondAttribute="leading" id="x1x-R6-iip"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="9c7-P2-Blf"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="VzY-2S-Ufi"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="5dv-Se-meQ"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Atq-PO-eB9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-115.94202898550725" y="87.723214285714278"/>
+            <point key="canvasLocation" x="-996" y="90"/>
         </scene>
         <!--Add Exercise Screen-->
         <scene sceneID="K0g-XK-dE1">
@@ -141,17 +88,23 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="38Y-Ot-c0j">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Workout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfe-Uo-VJ7">
-                                        <rect key="frame" x="90.5" y="0.0" width="233.5" height="40"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfe-Uo-VJ7">
+                                        <rect key="frame" x="115.5" y="0.0" width="183.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZY2-Fj-eO2"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wc9-lx-xas">
+                                        <rect key="frame" x="47" y="43" width="320" height="216"/>
+                                        <connections>
+                                            <action selector="dateUpdated:" destination="Ogb-sh-Asw" eventType="valueChanged" id="qLz-ej-MfT"/>
+                                        </connections>
+                                    </datePicker>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Py-J0-CFn">
-                                        <rect key="frame" x="15" y="43" width="384" height="722"/>
+                                        <rect key="frame" x="15" y="262" width="384" height="503"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MuscleCell" id="Yma-OA-Y9t" customClass="MuscleCellTableViewCell" customModule="ExerciseTracker" customModuleProvider="target">
@@ -199,13 +152,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <state key="normal" title="Save Workout"/>
                                         <connections>
-                                            <action selector="saveWorkout:" destination="Ogb-sh-Asw" eventType="touchUpInside" id="Wtb-L9-y0j"/>
+                                            <action selector="saveWorkout:" destination="Ogb-sh-Asw" eventType="touchUpInside" id="PeY-rq-VHX"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="1Py-J0-CFn" firstAttribute="top" secondItem="kfe-Uo-VJ7" secondAttribute="bottom" constant="3" id="NQY-Nm-7BV"/>
+                                    <constraint firstItem="1Py-J0-CFn" firstAttribute="top" secondItem="wc9-lx-xas" secondAttribute="bottom" constant="3" id="ZMK-oo-gdR"/>
                                     <constraint firstAttribute="trailing" secondItem="1Py-J0-CFn" secondAttribute="trailing" constant="15" id="b3h-6h-9bJ"/>
+                                    <constraint firstItem="wc9-lx-xas" firstAttribute="top" secondItem="kfe-Uo-VJ7" secondAttribute="bottom" constant="3" id="tHX-IE-m9F"/>
                                     <constraint firstItem="1Py-J0-CFn" firstAttribute="leading" secondItem="38Y-Ot-c0j" secondAttribute="leading" constant="15" id="zAb-Xt-PK5"/>
                                     <constraint firstItem="Mcs-Fu-Mod" firstAttribute="top" secondItem="1Py-J0-CFn" secondAttribute="bottom" constant="3" id="zpp-Rl-7wn"/>
                                 </constraints>
@@ -221,6 +175,7 @@
                         <viewLayoutGuide key="safeArea" id="kbJ-ZE-V2i"/>
                     </view>
                     <connections>
+                        <outlet property="datePickerView" destination="wc9-lx-xas" id="Xft-Lc-6sx"/>
                         <outlet property="tableView" destination="1Py-J0-CFn" id="fUX-gi-dIL"/>
                     </connections>
                 </viewController>
@@ -229,4 +184,7 @@
             <point key="canvasLocation" x="592.75362318840587" y="89.732142857142847"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qHs-bP-AoB"/>
+    </inferredMetricsTieBreakers>
 </document>
