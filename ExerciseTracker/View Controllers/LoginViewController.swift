@@ -8,13 +8,41 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        errorMessage.alpha = 0
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        // GIDSignIn.sharedInstance()?.signIn()
+        GIDSignIn.sharedInstance()?.delegate = self
+        self.errorMessage.alpha = 0
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error{
+            self.errorMessage.text = error.localizedDescription
+            self.errorMessage.alpha = 1
+            return
+        }
+        guard let authentication = user.authentication else {return}
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                self.errorMessage.text = error.localizedDescription
+                self.errorMessage.alpha = 1
+                return
+            }
+            else {
+                let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeVC") as? ExerciseListScreenTableViewController
+                self.view.window?.rootViewController = homeViewController
+                self.view.window?.makeKeyAndVisible()
+            }
+        }
     }
 
     
@@ -43,8 +71,6 @@ class LoginViewController: UIViewController {
     @IBAction func signUp(_ sender: Any) {
     }
     
-    @IBAction func signInWithGoogle(_ sender: UIButton) {
-    }
     
     
     

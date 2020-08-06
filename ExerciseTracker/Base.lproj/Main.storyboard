@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MuscleCell" translatesAutoresizingMaskIntoConstraints="NO" id="K36-po-2yH" customClass="ExerciseLogCell" customModule="ExerciseTracker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MuscleCell" translatesAutoresizingMaskIntoConstraints="NO" id="K36-po-2yH" customClass="ExerciseLogCell" customModule="ExerciseTracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K36-po-2yH" id="Cfn-iQ-q3F">
@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bJd-Pn-rcN">
-                                <rect key="frame" x="40" y="84" width="334" height="294.5"/>
+                                <rect key="frame" x="40" y="84" width="334" height="228.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPc-xI-eaH">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -97,15 +97,8 @@
                                             <segue destination="iJu-Le-Ank" kind="show" id="7hr-Rn-ohh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg4-Jh-gkD">
-                                        <rect key="frame" x="71.5" y="208" width="191" height="46"/>
-                                        <state key="normal" image="btn_google_signin_light_focus_web"/>
-                                        <connections>
-                                            <action selector="signInWithGoogle:" destination="vEA-rD-VqD" eventType="touchUpInside" id="jhy-8K-I0b"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-Zg-btE">
-                                        <rect key="frame" x="148" y="274" width="38" height="20.5"/>
+                                        <rect key="frame" x="148" y="208" width="38" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -118,13 +111,26 @@
                                     <constraint firstAttribute="trailing" secondItem="WPc-xI-eaH" secondAttribute="trailing" id="lK9-7t-Gw9"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xx0-1S-bL2" customClass="GIDSignInButton">
+                                <rect key="frame" x="40" y="527" width="334" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFZ-h0-GrT">
+                                        <rect key="frame" x="125" y="28" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="bJd-Pn-rcN" firstAttribute="centerX" secondItem="6m8-CD-ny4" secondAttribute="centerX" id="4rM-MV-GKJ"/>
                             <constraint firstItem="bJd-Pn-rcN" firstAttribute="top" secondItem="Sjb-kY-7is" secondAttribute="top" constant="40" id="D3r-Xd-yn8"/>
+                            <constraint firstItem="Xx0-1S-bL2" firstAttribute="centerX" secondItem="6m8-CD-ny4" secondAttribute="centerX" id="VRr-x6-Vpj"/>
                             <constraint firstItem="Sjb-kY-7is" firstAttribute="trailing" secondItem="bJd-Pn-rcN" secondAttribute="trailing" constant="40" id="ZKd-k6-Gfv"/>
                             <constraint firstItem="bJd-Pn-rcN" firstAttribute="leading" secondItem="Sjb-kY-7is" secondAttribute="leading" constant="40" id="hFP-qe-2fJ"/>
+                            <constraint firstItem="Xx0-1S-bL2" firstAttribute="top" secondItem="bJd-Pn-rcN" secondAttribute="bottom" constant="20" id="ljx-Nh-WhE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Sjb-kY-7is"/>
                     </view>
@@ -137,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csD-hB-QQa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2009" y="90"/>
+            <point key="canvasLocation" x="-2010.144927536232" y="89.732142857142847"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="UpA-68-509">
@@ -358,7 +364,4 @@
     <inferredMetricsTieBreakers>
         <segue reference="qHs-bP-AoB"/>
     </inferredMetricsTieBreakers>
-    <resources>
-        <image name="btn_google_signin_light_focus_web" width="191" height="46"/>
-    </resources>
 </document>
